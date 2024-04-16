@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng ký</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex justify-center items-center h-screen flex-col">
+      <h1 class="text-center text-2xl font-semibold">Đăng ký</h1>
+      <form
+        th:action="@{/users/register}"
+        th:object="${userDTO}"
+        method="post"
+        class="flex flex-col"
+      >
+        <div>
+          <label for="username">Tên đăng nhập:</label>
+          <input type="text" id="username" th:field="*{username}" required />
+        </div>
+        <div>
+          <label for="password">Mật khẩu:</label>
+          <input
+            type="password"
+            id="password"
+            th:field="*{password}"
+            required
+          />
+        </div>
+        <div>
+          <label for="retypePassword">Nhập lại mật khẩu:</label>
+          <input
+            type="password"
+            id="retypePassword"
+            th:field="*{retypePassword}"
+            required
+          />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" th:field="*{email}" required />
+        </div>
+        <button type="submit">Đăng ký</button>
+      </form>
+      <h1 th:text="${errorMessages}"></h1>
+    </div>
+  </body>
+  <script type="text/javascript" th:src="@{/js/app.js}"></script>
+</html>
