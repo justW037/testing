@@ -1,8 +1,9 @@
 package com.example.testing.DTOs;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -18,18 +19,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDTO {
+public class StudentRegisterDTO {
+    private String name;
 
-    private String username;
-
-    @NotBlank(message = "Password không được để trống")
-    @Size(min = 8, max = 12, message = "Password phải có độ dài từ 8 đến 12 ký tự")
-
-    private String password;
-    private String retypePassword;
+    private LocalDate birthday;
 
     @Email
     @NotBlank(message = "Email không được để trống")
     private String email;
 
+    private String phone;
+
+    @Size(max = 100, message = "Địa chỉ dưới 100 ký tự")
+    private String address;
+
+    private int sex;
 }

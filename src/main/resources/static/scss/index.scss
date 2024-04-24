@@ -1,0 +1,135 @@
+@import './loginAndRegister';
+@import './home';
+
+* {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+.btn {
+  display: block;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+.btn:hover {
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+.btn-col {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.form {
+  display: grid;
+  place-items: center;
+  padding: 50px;
+  background-color: #161616;
+  border-radius: 10px;
+  .form-body {
+    .form-text {
+      text-align: center;
+      line-height: 1;
+      .form-text-1 {
+        color: #00ff7f;
+        font-weight: 600;
+        font-size: 40px;
+      }
+      .form-text-2 {
+        color: #ffffff;
+        font-size: 18px;
+        margin-top: 17px;
+      }
+    }
+    .input-area {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .form-inp {
+        padding: 11px 25px;
+        background: transparent;
+        border: 1px solid #e3e3e3;
+        line-height: 1;
+        border-radius: 8px;
+        input {
+          width: 100%;
+          background: none;
+          font-size: 13.4px;
+          color: #00ff7f;
+          border: none;
+          padding: 0;
+          margin: 0;
+        }
+        input:focus {
+          outline: none;
+        }
+      }
+    }
+    .form-btn {
+      margin-top: 20px;
+      .submit-btn {
+        width: 100%;
+        color: #00ff7f;
+        background-color: transparent;
+        font-weight: 600;
+        font-size: 14px;
+        margin: 0;
+        padding: 14px 13px 12px 13px;
+        border: 0;
+        outline: 1px solid #00ff7f;
+        line-height: 1;
+      }
+      .submit-btn:hover {
+        background-color: #00ff7f;
+        color: #161616;
+      }
+      a {
+        color: #161616;
+        background-color: white;
+        font-weight: 600;
+        font-size: 14px;
+        margin: 0;
+        padding: 14px 13px 12px 13px;
+        border: 0;
+        line-height: 1;
+        text-align: center;
+      }
+      a:hover {
+        background-color: #161616;
+        color: white;
+        outline: 1px solid white;
+      }
+      p {
+        color: #ffffff;
+        font-size: 12px;
+        margin: 13px 0px;
+        text-align: center;
+      }
+    }
+    .form-error-text {
+      color: #ff0000;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .password {
+      text-align: center;
+      margin-top: 10px;
+      a {
+        color: #868686;
+        font-size: 12px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(90%);
+}

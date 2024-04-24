@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản lý sinh viên</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="home-container">
+      <div class="title-header">
+        <h1 class="title">Quản lí sinh viên</h1>
+        <button class="add-btn" th:onclick="closePopup()">Thêm</button>
+      </div>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>MSV</th>
+            <th>Tên sinh viên</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Ngày sinh</th>
+            <th>Địa chỉ</th>
+            <th>Giới tính</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="student : ${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.phone}"></td>
+            <td th:text="${student.birthday}"></td>
+            <td th:text="${student.address}"></td>
+            <td th:text="${student.sex == 0 ? 'Nam' : 'Nữ'}"></td>
+            <td class="btn-col">
+              <button class="btn test">&#8226; &#8226; &#8226;</button>
+              <ul class="menu">
+                <li>Sửa</li>
+                <li>
+                  <a th:href="@{'/students/delete-student?id=' + ${student.id}}"
+                    >Xoá</a
+                  >
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-student-container" id="popup">
+        <div class="overlay" th:onclick="closePopup()"></div>
+        <form
+          th:action="@{/students/add-student}"
+          th:object="${studentRegisterDTO}"
+          class="form"
+          id="add-form"
+          method="post"
+          autocomplete="off"
+        >
+          <div class="form-body">
+            <div class="form-text">
+              <h2 class="">Thêm sinh viên</h2>
+            </div>
+            <div class="input-area">
+              <div class="form-inp">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Tên sinh viên"
+                  required
+                />
+              </div>
+              <div class="form-inp">
+                <input type="email" name="email" placeholder="Email" required />
+              </div>
+              <div class="form-inp">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Số điện thoại"
+                  required
+                />
+              </div>
+              <div class="form-inp-group">
+                <div class="form-inp">
+                  <input type="date" name="birthday" required />
+                </div>
+                <div class="form-inp radio-btn-group">
+                  <input type="radio" name="sex" id="male" value="0" />
+                  <label for="male">Nam</label>
+                  <input type="radio" name="sex" id="female" value="1" />
+                  <label for="female">Nữ</label>
+                </div>
+              </div>
+              <div class="form-inp">
+                <input type="text" name="address" placeholder="Địa chỉ" />
+              </div>
+            </div>
+            <div class="form-btn btn-group">
+              <button class="submit-btn btn" type="submit">Lưu</button>
+              <div class="btn-cancel submit-btn btn" th:onclick="closePopup()">
+                Huỷ
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="form-student-container" id="popup2">
+        <div class="overlay" th:onclick="closePopup2()"></div>
+        <form
+          th:action="@{/students/update-student}"
+          th:object="${studentUpdateDTO}"
+          class="form"
+          id="edit-form"
+          method="post"
+          autocomplete="off"
+        >
+          <div class="form-body">
+            <div class="form-text">
+              <h2 class="">Sửa sinh viên</h2>
+            </div>
+            <div class="input-area">
+              <input type="hidden" name="id" />
+              <div class="form-inp">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Tên sinh viên"
+                  required
+                />
+              </div>
+              <div class="form-inp">
+                <input type="email" name="email" placeholder="Email" required />
+              </div>
+              <div class="form-inp">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Số điện thoại"
+                  required
+                />
+              </div>
+              <div class="form-inp-group">
+                <div class="form-inp">
+                  <input type="date" name="birthday" required />
+                </div>
+                <div class="form-inp radio-btn-group">
+                  <input type="radio" name="sex" id="male" value="0" />
+                  <label for="male">Nam</label>
+                  <input type="radio" name="sex" id="female" value="1" />
+                  <label for="female">Nữ</label>
+                </div>
+              </div>
+              <div class="form-inp">
+                <input type="text" name="address" placeholder="Địa chỉ" />
+              </div>
+            </div>
+            <div class="form-btn btn-group">
+              <button class="submit-btn btn" type="submit">Lưu</button>
+              <div class="btn-cancel submit-btn btn" th:onclick="closePopup2()">
+                Huỷ
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/app.js}"></script>
+    <script type="text/javascript" th:src="@{/js/showMenu.js}"></script>
+  </body>
+</html>

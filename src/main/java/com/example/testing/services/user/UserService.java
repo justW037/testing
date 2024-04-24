@@ -1,9 +1,10 @@
-package com.example.testing.services;
+package com.example.testing.services.user;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.testing.DTOs.UserDTO;
+import com.example.testing.DTOs.UserLoginDTO;
+import com.example.testing.DTOs.UserRegisterDTO;
 import com.example.testing.models.User;
 import com.example.testing.repositories.UserRepository;
 
@@ -16,7 +17,7 @@ public class UserService implements IUserService{
     private final PasswordEncoder passwordEncoder;
     
     @Override
-    public User createUser(UserDTO userDTO) throws Exception{
+    public User createUser(UserRegisterDTO userDTO) throws Exception{
         if(!userDTO.getPassword().equals(userDTO.getRetypePassword())) {
             throw new Exception("Password không khớp");
         }
@@ -30,8 +31,8 @@ public class UserService implements IUserService{
             throw new Exception("Username đã tồn tại");
         }
         User newUser = User.builder()
-                    .username(userDTO.getUsername())
-                    .email(userDTO.getEmail())
+                    .username(username)
+                    .email(email)
                     .build();
 
         String password = userDTO.getPassword();
@@ -39,5 +40,15 @@ public class UserService implements IUserService{
         newUser.setPassword(encodedPassword);
 
         return userRepository.save(newUser);
+    }
+
+    @Override
+    public User login(UserLoginDTO userDTO) throws Exception {
+        User user = userRepository.findByUsername(userDTO.getUsername())
+                .orElseThrow(() -> new Exception("Người dùng không tồn tại"));
+        if(!passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+            throw new Exception("Mật khẩu không chính xác");
+        }
+        return user;
     }
 }
