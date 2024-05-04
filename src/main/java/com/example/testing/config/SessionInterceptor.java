@@ -12,7 +12,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession(false);
         String requestURI = request.getRequestURI();
-        if (requestURI.startsWith("/css/") || requestURI.startsWith("/js/") || requestURI.startsWith("/images/")) {
+        if (requestURI.startsWith("/css/") || requestURI.startsWith("/js/")) {
             return true;
         }
         if (session != null && session.getAttribute("user") != null) {

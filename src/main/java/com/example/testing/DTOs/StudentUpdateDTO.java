@@ -22,13 +22,18 @@ import lombok.Setter;
 public class StudentUpdateDTO {
     private Long id;
 
+    @Size(max = 15, message = "Tên tối đa 15 ký tự")
+    @NotBlank(message = "Tên sv không được để trống")
     private String name;
+
     private LocalDate birthday;
 
-    @Email
+    @Email(message = "Email không đúng định dạng")
     @NotBlank(message = "Email không được để trống")
+    @Size(max = 30, message = "Email tối đa 30 ký tự")
     private String email;
 
+    @Size(max = 15, message = "Số điện thoại tối đa 15 ký tự")
     private String phone;
 
     @Size(max = 100, message = "Địa chỉ dưới 100 ký tự")

@@ -13,17 +13,17 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.testing.DTOs.StudentRegisterDTO;
 import com.example.testing.DTOs.StudentUpdateDTO;
 import com.example.testing.models.Student;
 import com.example.testing.services.student.IStudentService;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -42,50 +42,50 @@ public class StudentController {
     }
 
     @PostMapping("/add-student")
-    public String createStudent(@Valid StudentRegisterDTO studentRegisterDTO, BindingResult result, Model model) {
+    public String createStudent(@Valid StudentRegisterDTO studentRegisterDTO, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             List<String> errorMessages = result.getFieldErrors()
                     .stream()
                     .map(FieldError::getDefaultMessage)
                     .toList();
-            model.addAttribute("errorMessages", errorMessages);
-            return "redirect:/students/home";
+                    redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
+                    return "redirect:/students/home";
         }
         try {
             studentService.createStudent(studentRegisterDTO);
             return "redirect:/students/home";
         } catch (Exception e) {
-            model.addAttribute("errorMessages", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessages", e.getMessage());
             return "redirect:/students/home";
         }
     }
     
     @GetMapping("/delete-student")
-    public String delete(@RequestParam Long id, Model model){
+    public String delete(@RequestParam Long id, RedirectAttributes redirectAttributes){
         try {
             studentService.deleteStudent(id);
             return "redirect:/students/home";
         } catch (Exception e) {
-            model.addAttribute("errorMessages", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessages", e.getMessage());
             return "redirect:/students/home";
         }
     }
 
     @PostMapping("/update-student")
-    public String updateStudent(@Valid StudentUpdateDTO studentUpdateDTO , BindingResult result, Model model) {
+    public String updateStudent(@Valid StudentUpdateDTO studentUpdateDTO , BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             List<String> errorMessages = result.getFieldErrors()
                     .stream()
                     .map(FieldError::getDefaultMessage)
                     .toList();
-            model.addAttribute("errorMessages", errorMessages);
-            return "redirect:/students/home";
+                    redirectAttributes.addFlashAttribute("errorMessages", errorMessages);
+                    return "redirect:/students/home";
         }
         try {
             studentService.updateStudent(studentUpdateDTO);
             return "redirect:/students/home";
         } catch (Exception e) {
-            model.addAttribute("errorMessages", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessages", e.getMessage());
             return "redirect:/students/home";
         }
     }

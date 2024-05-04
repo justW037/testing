@@ -4,6 +4,20 @@
   color: white;
   padding: 20px 20px 0px 20px;
   height: calc(100vh - 20px);
+  position: relative;
+  .error-messages {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    background-color: #292929;
+    padding: 10px;
+    border-radius: 8px;
+    ul {
+      li {
+        color: red;
+      }
+    }
+  }
   .title-header {
     display: flex;
     flex-direction: row;
@@ -160,6 +174,33 @@
           background-color: white;
           color: #161616;
         }
+      }
+    }
+  }
+  .pagination {
+    margin-top: 20px;
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      gap: 5px;
+      li {
+        height: 35px;
+        width: 35px;
+        background-color: #292929;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        .active {
+          color: #00ff7f;
+        }
+      }
+
+      .disabled {
+        color: #007634;
+        pointer-events: none;
+        cursor: default;
       }
     }
   }

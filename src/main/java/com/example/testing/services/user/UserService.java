@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.testing.DTOs.UserLoginDTO;
 import com.example.testing.DTOs.UserRegisterDTO;
+import com.example.testing.exceptions.DataNotFoundException;
+import com.example.testing.exceptions.ExistedResourceException;
+import com.example.testing.exceptions.PasswordNotMatchException;
 import com.example.testing.models.User;
 import com.example.testing.repositories.UserRepository;
 
@@ -19,16 +22,16 @@ public class UserService implements IUserService{
     @Override
     public User createUser(UserRegisterDTO userDTO) throws Exception{
         if(!userDTO.getPassword().equals(userDTO.getRetypePassword())) {
-            throw new Exception("Password không khớp");
+            throw new PasswordNotMatchException("Password không khớp");
         }
         String email = userDTO.getEmail();
         String username = userDTO.getUsername();
 
         if(userRepository.existsByEmail(email)) {
-            throw new Exception("Email đã tồn tại");
+            throw new ExistedResourceException("Email đã tồn tại");
         }
         if(userRepository.existsByUsername(username)) {
-            throw new Exception("Username đã tồn tại");
+            throw new ExistedResourceException("Username đã tồn tại");
         }
         User newUser = User.builder()
                     .username(username)
@@ -45,9 +48,9 @@ public class UserService implements IUserService{
     @Override
     public User login(UserLoginDTO userDTO) throws Exception {
         User user = userRepository.findByUsername(userDTO.getUsername())
-                .orElseThrow(() -> new Exception("Người dùng không tồn tại"));
+                .orElseThrow(() -> new DataNotFoundException("Người dùng không tồn tại"));
         if(!passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
-            throw new Exception("Mật khẩu không chính xác");
+            throw new PasswordNotMatchException("Mật khẩu không chính xác");
         }
         return user;
     }

@@ -19,16 +19,22 @@ import lombok.Setter;
 @Setter
 public class UserRegisterDTO {
 
+    @NotBlank(message = "Username không được để trống")
+    @Size(max = 15, message = "Tên tối đa 15 ký tự")
     private String username;
 
-    @NotBlank(message = "Password không được để trống")
+    // @NotBlank(message = "Password không được để trống")
     @Size(min = 8, max = 12, message = "Password phải có độ dài từ 8 đến 12 ký tự")
 
     private String password;
+
+    // @NotBlank(message = "Password xác nhận không được để trống")
+    @Size(min = 8, max = 12, message = "Password xác nhận phải có độ dài từ 8 đến 12 ký tự")
     private String retypePassword;
 
-    @Email
+    @Email(message = "Email không đúng định dạng")
     @NotBlank(message = "Email không được để trống")
+    @Size(max = 30, message = "Email tối đa 30 ký tự")
     private String email;
 
 }

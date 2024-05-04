@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.testing.DTOs.StudentRegisterDTO;
 import com.example.testing.DTOs.StudentUpdateDTO;
+import com.example.testing.exceptions.DataNotFoundException;
+import com.example.testing.exceptions.ExistedResourceException;
 import com.example.testing.models.Student;
 import com.example.testing.repositories.StudentRepository;
 
@@ -21,7 +23,7 @@ public class StudentService implements IStudentService{
         String email = studentRegisterDTO.getEmail();
 
         if(studentRepository.existsByEmail(email)) {
-            throw new Exception("Email đã tồn tại");
+            throw new ExistedResourceException("Email đã tồn tại");
         }
         Student student = Student.builder()
         .email(email)
@@ -42,7 +44,7 @@ public class StudentService implements IStudentService{
     @Override
     public void deleteStudent(Long studentId) throws Exception{
         if(!studentRepository.existsById(studentId)) {
-            throw new Exception("Không tìm thấy sinh viên");
+            throw new DataNotFoundException("Không tìm thấy sinh viên");
         }
         studentRepository.deleteById(studentId);
     }
@@ -52,9 +54,9 @@ public class StudentService implements IStudentService{
         String email = studentDto.getEmail();
         Long studentId = studentDto.getId();
         if (studentRepository.existsByEmailAndIdNot(email, studentId)) {
-            throw new Exception("Email đã tồn tại");
+            throw new ExistedResourceException("Email đã tồn tại");
         }
-        Student student = studentRepository.findById(studentDto.getId()).orElseThrow(() -> new Exception("Không tìm thấy sinh viên"));
+        Student student = studentRepository.findById(studentDto.getId()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy sinh viên"));
 
         student.setEmail(email);
         student.setName(studentDto.getName());

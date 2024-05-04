@@ -11,6 +11,11 @@
         <h1 class="title">Quản lí sinh viên</h1>
         <button class="add-btn" th:onclick="closePopup()">Thêm</button>
       </div>
+      <div th:if="${errorMessages != null}" class="error-messages">
+        <ul th:each="error : ${errorMessages}">
+          <li th:text="${error}"></li>
+        </ul>
+      </div>
       <table class="student-table">
         <thead>
           <tr>
@@ -163,6 +168,33 @@
             </div>
           </div>
         </form>
+      </div>
+      <div class="pagination">
+        <ul>
+          <li th:if="${page.hasPrevious()}">
+            <a class="active" th:href="@{/students/home(page=0)}"><</a>
+          </li>
+          <li th:unless="${page.hasPrevious()}" class="disabled">
+            <span><</span>
+          </li>
+          <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+            <a
+              th:class="${page.number == i ? 'disabled' : 'active'}"
+              th:href="@{/students/home(page=${i})}"
+              th:text="${i + 1}"
+            ></a>
+          </li>
+          <li th:if="${page.hasNext()}">
+            <a
+              class="active"
+              th:href="@{/students/home(page=${page.totalPages - 1})}"
+              >></a
+            >
+          </li>
+          <li th:unless="${page.hasNext()}" class="disabled">
+            <span>></span>
+          </li>
+        </ul>
       </div>
     </div>
     <script type="text/javascript" th:src="@{/js/app.js}"></script>

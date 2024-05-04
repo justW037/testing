@@ -49,3 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 })
+
+const errorMessageElement = document.querySelector('.error-messages')
+if (errorMessageElement) {
+  setTimeout(function () {
+    errorMessageElement.style.display = 'none'
+  }, 5000)
+}

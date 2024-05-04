@@ -56,7 +56,6 @@ public class UserController {
         }
         try {
             userService.createUser(userRegisterDTO);
-
             return "redirect:login"; 
         } catch (Exception e) {
             model.addAttribute("errorMessages", e.getMessage());
