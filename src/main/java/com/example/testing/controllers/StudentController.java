@@ -24,8 +24,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
 @Controller
 @RequestMapping("students")
 @RequiredArgsConstructor
@@ -52,6 +50,7 @@ public class StudentController {
                     return "redirect:/students/home";
         }
         try {
+            // redirectAttributes.addFlashAttribute("successMessages", "Thêm sinh viên thành công");
             studentService.createStudent(studentRegisterDTO);
             return "redirect:/students/home";
         } catch (Exception e) {
@@ -63,6 +62,7 @@ public class StudentController {
     @GetMapping("/delete-student")
     public String delete(@RequestParam Long id, RedirectAttributes redirectAttributes){
         try {
+            // redirectAttributes.addFlashAttribute("successMessages", "Xoá người dùng thành công");
             studentService.deleteStudent(id);
             return "redirect:/students/home";
         } catch (Exception e) {
@@ -82,6 +82,7 @@ public class StudentController {
                     return "redirect:/students/home";
         }
         try {
+            // redirectAttributes.addFlashAttribute("successMessages", "Cập nhật người dùng thành công");
             studentService.updateStudent(studentUpdateDTO);
             return "redirect:/students/home";
         } catch (Exception e) {

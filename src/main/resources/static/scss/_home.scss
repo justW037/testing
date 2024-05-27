@@ -5,6 +5,15 @@
   padding: 20px 20px 0px 20px;
   height: calc(100vh - 20px);
   position: relative;
+  // .success-messages {
+  //   position: absolute;
+  //   top: 3%;
+  //   left: 50%;
+  //   background-color: #292929;
+  //   padding: 10px;
+  //   border-radius: 8px;
+  //   color: #00ff7f;
+  // }
   .error-messages {
     position: absolute;
     top: 3%;
@@ -154,7 +163,8 @@
         .radio-btn-group {
           display: flex;
           flex-direction: row;
-          gap: 5px;
+          gap: 2px;
+          max-width: 25%;
           label {
             color: #00ff7f;
           }

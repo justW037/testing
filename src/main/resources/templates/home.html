@@ -11,7 +11,7 @@
         <h1 class="title">Quản lí sinh viên</h1>
         <button class="add-btn" th:onclick="closePopup()">Thêm</button>
       </div>
-      <div th:if="${errorMessages != null}" class="error-messages">
+      <div th:if="${errorMessages != null}" id="errorMessage" class="error-messages">
         <ul th:each="error : ${errorMessages}">
           <li th:text="${error}"></li>
         </ul>
@@ -39,8 +39,8 @@
             <td th:text="${student.address}"></td>
             <td th:text="${student.sex == 0 ? 'Nam' : 'Nữ'}"></td>
             <td class="btn-col">
-              <button class="btn test">&#8226; &#8226; &#8226;</button>
-              <ul class="menu">
+              <button class="btn test" id="btn-menu">&#8226; &#8226; &#8226;</button>
+              <ul class="menu" id="menu">
                 <li>Sửa</li>
                 <li>
                   <a th:href="@{'/students/delete-student?id=' + ${student.id}}"
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div class="form-btn btn-group">
-              <button class="submit-btn btn" type="submit">Lưu</button>
+              <button class="submit-btn btn" id="udt-submit" type="submit">Lưu</button>
               <div class="btn-cancel submit-btn btn" th:onclick="closePopup2()">
                 Huỷ
               </div>

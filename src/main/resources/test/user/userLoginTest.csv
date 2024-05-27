@@ -1,0 +1,16 @@
+Username, Password, Expected output
+"", "123456789", Username không được để trống, T01
+"a" , "123456789",,T02
+"username" , "123456789",,T03
+"thisIsUsername", "123456789",,T04
+"thisIsUsername1", "123456789",,T05
+"thisIsUsername12", "123456789",Tên tối đa 15 ký tự,T06
+"thisUsernameIsLong", "123456789",Tên tối đa 15 ký tự,T07
+"username", , Password không được để trống,T08
+"username", "12345678",,T09
+"username", "123456789012",,T10
+"username", "1234567890",,T11
+"username", "12345678901",,T12
+"username", "1234567", Password phải có độ dài từ 8 đến 12 ký tự,T13
+"username","1234567890123",Password phải có độ dài từ 8 đến 12 ký tự,T14
+,,Username không được để trống;Password không được để trống,T15

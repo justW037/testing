@@ -1,0 +1,23 @@
+Username, Password, RetypePassword, Email, Expected output
+"", "123456789", "123456789", "example@example.com" , Username không được để trống, T01
+"a" , "123456789", "123456789", "example@example.com" ,,T02
+"username" , "123456789", "123456789", "example@example.com" ,,T03
+"thisIsUsername", "123456789", "123456789", "example@example.com" ,,T04
+"thisIsUsername1", "123456789", "123456789", "example@example.com" ,,T05
+"thisIsUsername12", "123456789", "123456789", "example@example.com" , Tên tối đa 15 ký tự,T06
+"thisUsernameIsLong", "123456789", "123456789", "example@example.com" , Tên tối đa 15 ký tự,T07
+"username", , ,"example@example.com", Password không được để trống;Password xác nhận không được để trống,T08
+"username", "12345678", "12345678", "example@example.com",,T09
+"username", "123456789012", "123456789012", "example@example.com",,T10
+"username", "1234567890", "1234567890", "example@example.com",,T11
+"username", "12345678901", "12345678901", "example@example.com",,T12
+"username", "1234567", "1234567", "example@example.com", Password phải có độ dài từ 8 đến 12 ký tự;Password xác nhận phải có độ dài từ 8 đến 12 ký tự,T13
+"username","1234567890123", "1234567890123", "example@example.com", Password xác nhận phải có độ dài từ 8 đến 12 ký tự;Password phải có độ dài từ 8 đến 12 ký tự,T14
+"username", "123456789", "123456789", "", Email không được để trống,T15
+"username", "123456789", "123456789", "1234567890123456789@example.com", Email tối đa 30 ký tự,T16
+"username", "123456789", "123456789", "123456789012345678@example.com",,T17
+"username", "123456789", "123456789", "12345678901234567@example.com",,T18
+"username", "123456789", "123456789", "example", Email không đúng định dạng,T19
+"username" , , "123456789", "example@example.com",Password không được để trống,T20
+"username" , "123456789", , "example@example.com",Password xác nhận không được để trống,T21
+, , , ,Email không được để trống;Username không được để trống;Password không được để trống;Password xác nhận không được để trống,T22

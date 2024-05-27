@@ -56,3 +56,10 @@ if (errorMessageElement) {
     errorMessageElement.style.display = 'none'
   }, 5000)
 }
+
+const successMessageElement = document.querySelector('.success-messages')
+if (successMessageElement) {
+  setTimeout(function () {
+    successMessageElement.style.display = 'none'
+  }, 5000)
+}

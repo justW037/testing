@@ -1,0 +1,31 @@
+Name, Birthday, Email, Phone, Address, Sex, Expected output
+"", 2024-04-02, "example@example.com","012345678", "1234 Example St", 0,Tên sv không được để trống,T01
+"a",2024-04-02, "example@example.com","012345678", "1234 Example St", 0,,T02
+"studentname",2024-04-02, "example@example.com", "012345678", "1234 Example St", 0,,T03
+"thisIsUsername",2024-04-02, "example@example.com", "012345678", "1234 Example St", 0,,T04
+"thisIsUsername1",2024-04-02, "example@example.com","012345678", "1234 Example St", 0,,T05
+"thisIsUsername12",2024-04-02, "example@example.com", "012345678", "1234 Example St", 0,Tên tối đa 15 ký tự,T06
+"thisUsernameIsLong",2024-04-02, "example@example.com", "012345678", "1234 Example St", 0,Tên tối đa 15 ký tự,T07
+"studentname",20240402, "example@example.com", "012345678", "1234 Example St", 0,Ngày sinh phải có định dạng yyyy-MM-dd,T08
+"studentname",, "example@example.com", "012345678", "1234 Example St", 0,,T09
+"studentname",2024/04/02, "example@example.com", "012345678", "1234 Example St", 0,Ngày sinh phải có định dạng yyyy-MM-dd,T10
+"studentname",2024-04-02, , "012345678", "1234 Example St", 0,Email không được để trống,T11
+"studentname",2024-04-02, "1234567890123456789@example.com", "012345678", "1234 Example St", 0,Email tối đa 30 ký tự,T12
+"studentname",2024-04-02, "123456789012345678@example.com", "012345678", "1234 Example St", 0,,T13
+"studentname",2024-04-02, "12345678901234567@example.com", "012345678", "1234 Example St", 0,,T14
+"studentname",2024-04-02, "example", "012345678", "1234 Example St", 0,Email không đúng định dạng,T15
+"studentname",2024-04-02, "example@example.com", , "1234 Example St", 0,,T16
+"studentname",2024-04-02, "example@example.com", "01234567890123", "1234 Example St", 0,,T17
+"studentname",2024-04-02, "example@example.com", "012345678901234", "1234 Example St", 0,,T18
+"studentname",2024-04-02, "example@example.com", "0123456789012345", "1234 Example St", 0,Số điện thoại tối đa 15 ký tự,T19
+"studentname",2024-04-02, "example@example.com", "0", , 0,,T20
+"studentname",2024-04-02, "example@example.com", "012345678", "abbbacbcaccabacccabbcbcacabbabccabccaaccbcaabaabc", 0,,T21
+"studentname",2024-04-02, "example@example.com", "012345678", "abbbacbcaccabacccabbcbcacabbabccabccaaccbcaabaabca", 0,,T22
+"studentname",2024-04-02, "example@example.com", "012345678", "abbbacbcaccabacccabbcbcacabbabccabccaaccbcaabaabcaa", 0,Địa chỉ tối đa 50 ký tự,T23
+"studentname",2024-04-02, "example@example.com", "012345678", "a", 0,,T24
+"studentname",2024-04-02, "example@example.com", "012345678", "1234 Example St", -2,Giới tính không hợp lệ,T25
+"studentname",2024-04-02, "example@example.com", "012345678", "1234 Example St", 100,Giới tính phải là số có 1 chữ số,T26
+,,,,,1,Email không được để trống;Tên sv không được để trống,T27
+"studentname",2024-04-02, "example@example.com", "012345678", "1234 Example St", 1,,T28
+
+

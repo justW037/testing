@@ -25,13 +25,14 @@ public class StudentService implements IStudentService{
         if(studentRepository.existsByEmail(email)) {
             throw new ExistedResourceException("Email đã tồn tại");
         }
+        int validateSex = studentRegisterDTO.getSex() != 1 ? 0 : 1;
         Student student = Student.builder()
         .email(email)
         .name(studentRegisterDTO.getName())
         .address(studentRegisterDTO.getAddress())
         .birthday(studentRegisterDTO.getBirthday().toString())
         .phone(studentRegisterDTO.getPhone())
-        .sex(studentRegisterDTO.getSex())
+        .sex(validateSex)
         .build();
         return studentRepository.save(student);
     }
@@ -57,13 +58,14 @@ public class StudentService implements IStudentService{
             throw new ExistedResourceException("Email đã tồn tại");
         }
         Student student = studentRepository.findById(studentDto.getId()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy sinh viên"));
+        int validateSex = studentDto.getSex() != 1 ? 0 : 1;
 
         student.setEmail(email);
         student.setName(studentDto.getName());
         student.setAddress(studentDto.getAddress());
         student.setBirthday(studentDto.getBirthday().toString());
         student.setPhone(studentDto.getPhone());
-        student.setSex(studentDto.getSex());
+        student.setSex(validateSex);
         
         return studentRepository.save(student);
     }
